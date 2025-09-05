@@ -1,17 +1,17 @@
-# ⚙️ Elasticsearch 기반 키워드 검색 엔진 (Elasticsearch-based Keyword Search Engine)
+# Elasticsearch 기반 키워드 검색 엔진 (Elasticsearch-based Keyword Search Engine)
 
 Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진입니다.
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://elasticsearch-keyword-search-4hksmdwfnx46qcp2zdheir.streamlit.app/)
 
-## ✨ 주요 기능
+## 주요 기능
 
 * **다중 필드 통합 검색**: 사용자가 정의한 여러 필드를 동시에 검색하여 종합적인 결과를 제공합니다.
 * **한글 형태소 분석**: Elasticsearch의 **Nori** 분석기 플러그인을 적용하여, 조사가 포함된 검색어 등 한국어의 특성을 고려한 정확도 높은 검색이 가능합니다.
 * **직관적인 웹 UI**: **Streamlit**을 활용하여 누구나 쉽게 사용할 수 있는 깔끔하고 반응형인 웹 인터페이스를 구현했습니다.
 * **클라우드 기반 배포**: **Elastic Cloud**와 **Streamlit Community Cloud**를 이용해 24시간 안정적으로 운영되는 웹 서비스로 배포할 수 있는 아키텍처를 갖추고 있습니다.
 
-## 🔧 나만의 데이터로 활용하기 (Customization)
+## 나만의 데이터로 활용하기 (Customization)
 
 이 프로젝트는 다른 데이터셋에도 쉽게 적용할 수 있도록 설계되었습니다.
 
@@ -19,7 +19,7 @@ Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진
 2.  **색인 스크립트 수정 (`src/indexer.py`)**: CSV 파일의 컬럼(열) 이름에 맞게 `mapping` 변수와 `doc` 딕셔너리 부분을 수정합니다. Nori 분석기를 사용할 필드를 지정할 수 있습니다.
 3.  **검색 앱 수정 (`src/app.py`)**: `multi_match` 쿼리의 `fields` 목록과 검색 결과를 화면에 표시하는 부분을 새로운 데이터 구조에 맞게 수정합니다.
 
-## ⚙️ 시스템 아키텍처
+## 시스템 아키텍처
 
 ```
 [사용자] <---> [Streamlit Community Cloud] <---> [Elastic Cloud]
@@ -28,7 +28,7 @@ Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진
                                      [Elasticsearch Index with Nori Analyzer]
 ```
 
-## 🛠️ 기술 스택
+## 기술 스택
 
 * **Backend**: Elasticsearch (`8.15.0`), Python (`3.11`)
 * **Frontend**: Streamlit (`1.49.1`)
@@ -38,7 +38,7 @@ Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진
 * **Deployment**: Streamlit Community Cloud, Docker
 * **Dependency Management**: Poetry (`1.8.5`)
 
-## 🚀 로컬 환경에서 실행하기 (Setup & Installation)
+## 로컬 환경에서 실행하기 (Setup & Installation)
 
 ### 1. 프로젝트 클론 (Clone Repository)
 ```bash
@@ -75,5 +75,5 @@ poetry run streamlit run src/app.py
 ```
 웹 브라우저에서 `http://localhost:8501` 주소로 접속하여 앱을 확인할 수 있습니다.
 
-## 📄 License
+## License
 This project is licensed under the MIT License.
