@@ -1,0 +1,17 @@
+# Streamlit secrets file
+.streamlit/secrets.toml
+
+# Environment variables file
+.env
+
+# Poetry virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+
+# macOS folder attributes
+.DS_Store
+
+# test document
+check.md
