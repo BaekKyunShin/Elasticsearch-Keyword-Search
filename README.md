@@ -2,7 +2,7 @@
 
 Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진입니다.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](YOUR_STREAMLIT_APP_URL)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://elasticsearch-keyword-search-4hksmdwfnx46qcp2zdheir.streamlit.app/)
 
 ## ✨ 주요 기능
 
