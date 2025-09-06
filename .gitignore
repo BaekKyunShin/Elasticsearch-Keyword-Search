@@ -15,7 +15,3 @@ __pycache__/
 
 # test document
 check.md
-
-# Poetry files
-pyproject.toml
-poetry.lock

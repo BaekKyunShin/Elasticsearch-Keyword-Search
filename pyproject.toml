@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "elasticsearch-keyword-search"
+version = "0.1.0"
+description = "Elasticsearch keyword search engine"
+authors = ["Baek Kyun Shin <werooring@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.3.2"
+elasticsearch = "8.15.0"
+streamlit = "^1.49.1"
+python-dotenv = "^1.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
