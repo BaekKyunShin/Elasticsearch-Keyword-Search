@@ -17,7 +17,7 @@ es = Elasticsearch(
 )
 
 # 데이터를 저장할 인덱스 이름 정의
-INDEX_NAME = 'k-content'
+INDEX_NAME = 'content'
 
 # 인덱스 매핑(스키마) 정의
 mapping = {
