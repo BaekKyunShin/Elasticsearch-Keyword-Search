@@ -7,14 +7,14 @@ es = Elasticsearch(
     basic_auth=("elastic", st.secrets["ES_PASSWORD"])
 )
 
-INDEX_NAME = 'k-content'
+INDEX_NAME = 'content'
 
 # Streamlit 웹 앱의 UI 구성
-st.title("🎬 K-콘텐츠 검색 엔진")
-st.write("영화나 드라마의 줄거리(plot)를 기반으로 검색합니다.")
+st.title("콘텐츠 검색 엔진")
+st.write("책의 줄거리(plot)를 기반으로 검색합니다.")
 
 # 1. 사용자로부터 검색어 입력받기
-search_query = st.text_input("검색어를 입력하세요:", placeholder="예: 생존을 위한 치열한 사투")
+search_query = st.text_input("검색어를 입력하세요:", placeholder="예: 모더니즘")
 
 # 2. '검색' 버튼 생성 및 클릭 이벤트 처리
 if st.button("검색"):
@@ -25,7 +25,7 @@ if st.button("검색"):
             "query": {
                 "multi_match": {
                     "query": search_query,
-                    "fields": ["title", "director", "genre", "plot"]
+                    "fields": ["title", "author", "genre", "plot"]
                 }
             }
         }
@@ -40,7 +40,7 @@ if st.button("검색"):
             for doc in results['hits']['hits']:
                 st.divider() # 결과 구분을 위한 라인
                 st.subheader(f"{doc['_source']['title']} (평점: {round(doc['_score'], 2)})")
-                st.write(f"**감독:** {doc['_source']['director']}")
+                st.write(f"**저자:** {doc['_source']['author']}")
                 st.write(f"**장르:** {doc['_source']['genre']}")
                 st.write(doc['_source']['plot'])
         else:

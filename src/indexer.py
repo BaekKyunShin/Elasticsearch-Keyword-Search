@@ -23,7 +23,7 @@ INDEX_NAME = 'k-content'
 mapping = {
     "properties": {
         "title": {"type": "text", "analyzer": "nori"},
-        "director": {"type": "text", "analyzer": "nori"},
+        "author": {"type": "text", "analyzer": "nori"},
         "genre": {"type": "text", "analyzer": "nori"},
         "plot": {"type": "text", "analyzer": "nori"},
     }
@@ -46,7 +46,7 @@ try:
     for i, row in df.iterrows():
         doc = {
             "title": row["title"],
-            "director": row["director"],
+            "author": row["author"],
             "genre": row["genre"],
             "plot": row["plot"]
         }
