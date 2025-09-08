@@ -30,12 +30,12 @@ Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진
 
 ## 기술 스택
 
-* **Backend**: Elasticsearch (`8.15.0`), Python (`3.11`)
+* **Backend & Framework**: Python (`3.11+`), Elasticsearch (`8.15.0`)
 * **Frontend**: Streamlit (`1.49.1`)
-* **Database**: Elastic Cloud
+* **Database**: Elastic Cloud, Elasticsearch (`8.15.0`)
 * **Korean Analyzer**: Nori Plugin
 * **Data Handling**: Pandas (`2.3.2`)
-* **Deployment**: Streamlit Community Cloud, Docker
+* **Deployment & DevOps**: Streamlit Community Cloud, Docker
 * **Dependency Management**: Poetry (`1.8.5`)
 
 ## 로컬 환경에서 실행하기 (Setup & Installation)

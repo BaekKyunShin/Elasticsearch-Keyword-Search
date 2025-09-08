@@ -2,4 +2,4 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:8.15.0
 
 # 2. nori 한글 형태소 분석기 플러그인을 설치하는 명령어를 실행합니다.
-RUN elasticsearch-plugin install analysis-nori
+RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-nori
