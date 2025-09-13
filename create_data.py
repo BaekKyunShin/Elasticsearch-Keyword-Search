@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-# 1. 샘플 데이터 정의 (딕셔너리의 리스트 형태)
+# 샘플 데이터 정의 (딕셔너리의 리스트 형태)
 data = [
     {'title': '위대한 개츠비', 'author': 'F. 스콧 피츠제럴드', 'genre': '소설, 비극, 모더니즘', 'plot': '1920년대 미국을 배경으로, 미스터리한 백만장자 개츠비의 무모한 사랑과 꿈, 그리고 좌절을 통해 아메리칸 드림의 허상을 그려낸 소설.'},
     {'title': '호밀밭의 파수꾼', 'author': 'J.D. 샐린저', 'genre': '성장 소설, 리얼리즘', 'plot': '퇴학당한 고등학생 홀든 콜필드가 집으로 돌아가기 전 며칠간 뉴욕을 방황하며 겪는 경험과 위선적인 세상에 대한 환멸, 순수에 대한 갈망을 독백체로 이야기한다.'},
@@ -12,18 +12,18 @@ data = [
     {'title': '인간실격', 'author': '다자이 오사무', 'genre': '사소설, 자전적 소설', 'plot': '주인공 요조가 순수한 내면과 위선적인 세상 사이의 괴리감 속에서 익살꾼으로 자신을 위장하며 살아가다 결국 파멸에 이르는 과정을 그린 자전적 소설.'}
 ]
 
-# 2. 데이터를 pandas DataFrame으로 변환
+# 데이터를 pandas DataFrame으로 변환
 df = pd.DataFrame(data)
 
-# 3. 데이터를 저장할 경로 설정
+# 데이터 저장 경로 설정
 output_dir = 'data'
 output_filename = 'sample_data.csv'
 output_path = os.path.join(output_dir, output_filename)
 
-# 4. 'data' 디렉터리가 없으면 생성
+# 'data' 디렉터리 생성
 os.makedirs(output_dir, exist_ok=True)
 
-# 5. DataFrame을 CSV 파일로 저장
+# DataFrame을 CSV 파일로 저장
 # index=False: DataFrame의 인덱스를 파일에 포함하지 않음
 # encoding='utf-8-sig': Excel 등에서 한글이 깨지지 않도록 하기 위함
 df.to_csv(output_path, index=False, encoding='utf-8-sig')

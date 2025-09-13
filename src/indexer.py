@@ -10,13 +10,13 @@ load_dotenv()
 CLOUD_ID = os.getenv("ES_CLOUD_ID")
 CLOUD_PASSWORD = os.getenv("ES_PASSWORD")
 
-# 불러온 값으로 Elasticsearch 클라이언트 객체 생성
+# Elasticsearch 클라이언트 객체 생성
 es = Elasticsearch(
     cloud_id=CLOUD_ID,
     basic_auth=("elastic", CLOUD_PASSWORD)
 )
 
-# 데이터를 저장할 인덱스 이름 정의
+# 데이터 저장 인덱스 이름 정의
 INDEX_NAME = 'content'
 
 # 인덱스 매핑(스키마) 정의
