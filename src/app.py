@@ -39,7 +39,7 @@ if st.button("검색"):
         if results['hits']['hits']:
             for doc in results['hits']['hits']:
                 st.divider() # 결과 구분을 위한 라인
-                st.subheader(f"{doc['_source']['title']} (평점: {round(doc['_score'], 2)})")
+                st.subheader(f"{doc['_source']['title']} (관련도 점수(Relevance Score): {round(doc['_score'], 2)})")
                 st.write(f"**저자:** {doc['_source']['author']}")
                 st.write(f"**장르:** {doc['_source']['genre']}")
                 st.write(doc['_source']['plot'])
