@@ -11,13 +11,17 @@ INDEX_NAME = 'content'
 
 # Streamlit 웹 앱 UI 구성
 st.title("콘텐츠 검색 엔진")
-st.write("책의 줄거리(plot)를 기반으로 검색합니다.")
+st.write("고전소설에 대해 키워드 기반으로 검색합니다. 제목, 저자, 장르, 줄거리에 대한 키워드를 입력해주세요.")
 
 # 사용자 검색어 입력
-search_query = st.text_input("검색어를 입력하세요:", placeholder="예: 모더니즘")
+with st.form(key='search_form'):
+    # 텍스트 입력과 제출 버튼을 폼 안에 배치
+    search_query = st.text_input("검색어를 입력하세요:", placeholder="예: 사랑, 배신, 꿈")
+    # 일반 버튼을 폼 제출 버튼으로 변경
+    submit_button = st.form_submit_button(label='검색')
 
 # '검색' 버튼 생성 및 클릭 이벤트 처리
-if st.button("검색"):
+if submit_button:
     if search_query:
         # Elasticsearch 검색 쿼리 작성
         # multi_match 쿼리로 여러 필드(title, director, genre, plot)를 동시에 검색
@@ -39,7 +43,7 @@ if st.button("검색"):
         if results['hits']['hits']:
             for doc in results['hits']['hits']:
                 st.divider() # 결과 구분을 위한 라인
-                st.subheader(f"{doc['_source']['title']} (관련도 점수(Relevance Score): {round(doc['_score'], 2)})")
+                st.subheader(f"{doc['_source']['title']} (관련도 점수: {round(doc['_score'], 2)})")
                 st.write(f"**저자:** {doc['_source']['author']}")
                 st.write(f"**장르:** {doc['_source']['genre']}")
                 st.write(doc['_source']['plot'])
