@@ -10,7 +10,6 @@ jobs:
     env:
       APP_URL: ${{ secrets.APP_URL }}   # ← 여기서 시크릿을 환경변수로 주입
     steps:
-      - name: HEAD ping
-        run: curl -I -L --retry 3 --retry-all-errors --max-time 30 "$APP_URL"
-      - name: GET fallback
-        run: curl -sL --retry 3 --retry-all-errors --max-time 45 "$APP_URL" > /dev/null
+      - name: Debug ping
+        run: |
+            curl -I -v "$APP_URL"
