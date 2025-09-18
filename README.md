@@ -4,6 +4,8 @@ Python과 Elasticsearch를 활용하여 구축한 범용 키워드 검색 엔진
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://elasticsearch-keyword-search-4hksmdwfnx46qcp2zdheir.streamlit.app/)
 
+신규 기여자라면 [Repository Guidelines](AGENTS.md)를 먼저 확인해주세요.
+
 ## 주요 기능
 
 * **다중 필드 통합 검색**: 사용자가 정의한 여러 필드를 동시에 검색하여 종합적인 결과를 제공합니다.

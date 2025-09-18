@@ -19,4 +19,3 @@ jobs:
                 --connect-timeout 10 \
                 --max-time 30 \
                 "$APP_URL"
-      
