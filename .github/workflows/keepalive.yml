@@ -1,0 +1,22 @@
+name: keep-streamlit-alive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # 10분마다 실행 (UTC 기준)
+  workflow_dispatch: {}       # 필요 시 수동 실행
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping app with HEAD (fast)
+        run: |
+          curl -I -L --max-time 20 "$APP_URL"
+      - name: Fallback GET (일부 환경이 HEAD를 무시할 때)
+        run: |
+          curl -sL --max-time 30 "$APP_URL" > /dev/null
+    env:
+      APP_URL: https://elasticsearch-keyword-search-4hksmdwfnx46qcp2zdheir.streamlit.app/
+      # 인증이 필요하면 아래와 같이 사용
+      # APP_TOKEN: ${{ secrets.APP_TOKEN }}
+      # 그리고 위 curl에: -H "Authorization: Bearer $APP_TOKEN"
