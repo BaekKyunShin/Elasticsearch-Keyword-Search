@@ -11,14 +11,12 @@ jobs:
     env:
       APP_URL: ${{ secrets.APP_URL }}
     steps:
-      - name: Keep Streamlit awake
-        run: |
-          # HEAD 요청으로 먼저 체크 (리다이렉트 5회 제한)
-          curl -I -L --max-redirs 5 \
-               --retry 3 --retry-all-errors \
-               --connect-timeout 10 --max-time 30 "$APP_URL" || echo "HEAD request failed, fallback to GET"
-
-          # GET 요청으로 백업 호출
-          curl -sL --max-redirs 5 \
-               --retry 3 --retry-all-errors \
-               --connect-timeout 10 --max-time 45 "$APP_URL" > /dev/null
+        - name: Keep Streamlit awake
+          run: |
+            curl -I \
+                --retry 3 \
+                --retry-all-errors \
+                --connect-timeout 10 \
+                --max-time 30 \
+                "$APP_URL"
+      
