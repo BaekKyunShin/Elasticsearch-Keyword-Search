@@ -9,27 +9,16 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     env:
-      APP_URL: ${{ secrets.APP_URL }}   # 시크릿에서 URL 주입
-
+      APP_URL: ${{ secrets.APP_URL }}
     steps:
-      # 1. HEAD 요청으로 가볍게 확인 (리다이렉트 및 네트워크 에러 대비)
-      - name: HEAD ping with retry
+      - name: Keep Streamlit awake
         run: |
-          curl -I -L \
-               --max-redirs 5 \
-               --retry 3 \
-               --retry-all-errors \
-               --connect-timeout 10 \
-               --max-time 30 \
-               "$APP_URL"
+          # HEAD 요청으로 먼저 체크 (리다이렉트 5회 제한)
+          curl -I -L --max-redirs 5 \
+               --retry 3 --retry-all-errors \
+               --connect-timeout 10 --max-time 30 "$APP_URL" || echo "HEAD request failed, fallback to GET"
 
-      # 2. GET 요청으로 실제 페이지 접근 (백업용)
-      - name: GET fallback
-        run: |
-          curl -sL \
-               --max-redirs 5 \
-               --retry 3 \
-               --retry-all-errors \
-               --connect-timeout 10 \
-               --max-time 45 \
-               "$APP_URL" > /dev/null
+          # GET 요청으로 백업 호출
+          curl -sL --max-redirs 5 \
+               --retry 3 --retry-all-errors \
+               --connect-timeout 10 --max-time 45 "$APP_URL" > /dev/null
