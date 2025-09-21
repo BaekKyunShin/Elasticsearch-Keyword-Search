@@ -3,7 +3,7 @@ name: keep-streamlit-alive
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/10 * * * *"   # 10분마다 실행 (UTC)
+    - cron: "*/5 * * * *"   # 5분마다 실행 (UTC)
 
 jobs:
   ping:
@@ -11,11 +11,10 @@ jobs:
     env:
       APP_URL: ${{ secrets.APP_URL }}
     steps:
-        - name: Keep Streamlit awake
-          run: |
-            curl -I \
-                --retry 3 \
-                --retry-all-errors \
-                --connect-timeout 10 \
-                --max-time 30 \
-                "$APP_URL"
+      - name: HEAD ping (optional)
+        run: |
+          curl -I --retry 3 --retry-all-errors --connect-timeout 10 --max-time 30 "$APP_URL" || true
+      - name: GET keep-alive (실제 유지에 사용)
+        run: |
+          curl -s --retry 3 --retry-all-errors --connect-timeout 10 --max-time 45 \
+                -H "User-Agent: Mozilla/5.0" "$APP_URL" > /dev/null
