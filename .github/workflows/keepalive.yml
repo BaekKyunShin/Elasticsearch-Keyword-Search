@@ -1,9 +1,8 @@
 name: keep-streamlit-alive
-
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"   # 5분마다 실행 (UTC)
+    - cron: "*/3 * * * *"        # 3분마다 (UTC)
+  workflow_dispatch:
 
 jobs:
   ping:
@@ -11,10 +10,18 @@ jobs:
     env:
       APP_URL: ${{ secrets.APP_URL }}
     steps:
+      # (선택) 가벼운 HEAD
       - name: HEAD ping (optional)
         run: |
-          curl -I --retry 3 --retry-all-errors --connect-timeout 10 --max-time 30 "$APP_URL" || true
-      - name: GET keep-alive (실제 유지에 사용)
+          curl -I --retry 3 --retry-all-errors --connect-timeout 10 --max-time 20 "$APP_URL" || true
+
+      # 실제 유지용 GET - 캐시 우회 & 브라우저 UA
+      - name: GET keep-alive (cache-busted)
         run: |
-          curl -s --retry 3 --retry-all-errors --connect-timeout 10 --max-time 45 \
-                -H "User-Agent: Mozilla/5.0" "$APP_URL" > /dev/null
+          TS=$(date +%s)
+          curl -s --retry 3 --retry-all-errors \
+               --connect-timeout 10 --max-time 30 \
+               -H "Cache-Control: no-cache" \
+               -H "Pragma: no-cache" \
+               -H "User-Agent: Mozilla/5.0" \
+               "$APP_URL?ping=$TS" > /dev/null
